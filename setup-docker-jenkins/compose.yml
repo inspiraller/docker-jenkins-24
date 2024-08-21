@@ -1,0 +1,30 @@
+services:
+  jenkins:
+    container_name: docker-jenkins
+    privileged: true
+    user: root
+    ports:
+       - "8080:8080"
+       - "50000:50000"
+    environment:
+      - JENKINS_ADMIN_ID=admin
+      - JENKINS_ADMIN_PASSWORD_FILE=/run/secrets/JENKINS_ADMIN_PASSWORD
+      - CASC_JENKINS_CONFIG=/var/jenkins_conf
+      - PLUGINS_FORCE_UPGRADE=true
+    secrets:
+      - JENKINS_ADMIN_PASSWORD
+    build:
+      context: .
+    image: "docker-jenkins:1"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - ./.casc_configs:/var/jenkins_conf
+  
+volumes:
+  jenkins_home:
+
+secrets:
+  JENKINS_ADMIN_PASSWORD:
+    file: ./.secrets/JENKINS_ADMIN_PASSWORD
+
+
