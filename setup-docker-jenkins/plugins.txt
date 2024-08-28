@@ -21,3 +21,4 @@ workflow-aggregator:latest
 ws-cleanup:latest
 docker-workflow:latest
 docker-compose-build-step:latest
+nodejs:latest
