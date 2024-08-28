@@ -89,4 +89,12 @@ npm run test
 - Select Branch
 - Click - Settings
 - Webhooks
+- payload url: http://MYIP:8080/gethub-webhook
 
+# Recieve github webook from jenkins
+- Manage Jenkins > Sytem
+- Github - Specify another hook URL for GitHub configuration
+- specify a differnt url, otherwise it will default to: http://MYIP:8080/github-webhook/
+
+
+..
