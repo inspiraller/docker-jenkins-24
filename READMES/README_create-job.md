@@ -58,9 +58,10 @@ copy paste this into box
 - repo: https://github.com/inspiraller/docker-jenkins-24
 - Credentials: Select docker-jenkins
 Connection succesful if no red alert
-
 - Branches to build: feature/playwright
 
+**Build enviornment**
+- Tick - Provide Node & npm bin/ folder to PATH > node-22
 - **Build Steps**
 - Add build step
 - Execute Shell
@@ -91,10 +92,35 @@ npm run test
 - Webhooks
 - payload url: http://MYIP:8080/gethub-webhook
 
+----------------------------------------------
+# TODO - 
 # Recieve github webook from jenkins
 - Manage Jenkins > Sytem
 - Github - Specify another hook URL for GitHub configuration
 - specify a differnt url, otherwise it will default to: http://MYIP:8080/github-webhook/
 
+ # Host jenkins elsewhere for better performance
+ - cost: 
+ - https://geekflare.com/jenkins-hosting-platform/
+ - kamatera $4 pcm
+ - aws is like $84 pcm!!
 
-..
+# TO DEBUG
+- Executable doesn't exist at /root/.cache/ms-playwright/chromium-1129/chrome-linux/chrome
+
+# Install additional plugin - to set environment variables
+-  search bug: https://github.com/microsoft/playwright/issues/5767
+-  Change playwright chromium browser path: https://gkushang.medium.com/playwright-failed-to-launch-browsers-how-to-solve-8b01d03fe5b9
+-  Environment Injector Plugin - https://stackoverflow.com/questions/10625259/how-to-set-environment-variables-in-jenkins
+
+# How to install npm packages on docker?
+- First install nodejs - https://stackoverflow.com/questions/52270634/install-add-nodejs-into-jenkins-docker-image-permanently
+- Or `find / -name "nodejs"` (But still can't do node -v)
+
+- Pnpm seems a clear winner https://stackoverflow.com/questions/46870020/cache-npm-dependencies-on-jenkins-pipeline
+- Note: There are still no clear instructions as to why we need nodejs and npm directly installed on docker jenkins image separately.
+Having both then would mean the ability to install pnpm, and then for each project just use pnpm.
+
+
+
+
